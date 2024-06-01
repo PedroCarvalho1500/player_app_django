@@ -13,13 +13,12 @@ from django.utils import timezone
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, db_index=True)
+    country = models.CharField(max_length=100, db_index=True)
     def __str__(self) -> str:
         return self.name
 
 class Player(models.Model):
-    pass
     name = models.CharField(max_length=100)
     team = models.ForeignKey(Team,related_name='players', on_delete=models.CASCADE)
     total_goals = models.IntegerField(default=False,db_index=True)
@@ -29,9 +28,6 @@ class Player(models.Model):
     def __str__(self) -> str:
         return self.name
     
-    # class Meta:
-    #     indexes = [models.Index(fields=['name','team','total_goals','total_assists','market_value'])]
-
 
 class Competition(models.Model):
     name = models.CharField(max_length=100)

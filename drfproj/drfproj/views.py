@@ -71,13 +71,17 @@ class GetAllPlayersView(generics.ListAPIView):
 
 @authentication_classes([ExpiringTokenAuthentication])
 @permission_classes([IsAuthenticated])
-class GetAllTeamsView(APIView):
+class GetAllTeamsView(generics.ListAPIView):
     #permission_classes = (IsAuthenticated, )
+    #print("ENTERED...")
+    queryset = Team.objects.all().order_by('country')
+    serializer_class = TeamSerializer
+    pagination_class = CustomPageNumberPag
 
-    def get(self,request, *args, **kwargs):
-        queryset = Team.objects.all().order_by('name').values()
-        serializer = TeamSerializer(queryset,many=True)
-        return Response(serializer.data)
+    # def get(self,request, *args, **kwargs):
+    #     queryset = Team.objects.all().order_by('name').values()
+    #     serializer = TeamSerializer(queryset,many=True)
+    #     return Response(serializer.data)
 
 
 @authentication_classes([ExpiringTokenAuthentication])

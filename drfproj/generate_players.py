@@ -33,7 +33,19 @@ with open('players_data.csv') as f:
     for row in f_csv:
         #print(row)
         team, created = Team.objects.get_or_create(name=row[1], defaults={'country': row[2]})
-        player = Player.objects.create(name=row[0], team=team,total_goals=row[3], total_assists=row[4],market_value=row[5])
+        #player = Player.objects.create(name=row[0], team=team,total_goals=row[3], total_assists=row[4],market_value=row[5])
+
+
+
+with open('teams_data.csv') as f:
+    f_csv = csv.reader(f) 
+    headers = next(f_csv) 
+    for row in f_csv:
+        #print(row)
+        team, created = Team.objects.get_or_create(name=row[0], defaults={'country': row[1]})
+        #player = Player.objects.create(name=row[0], team=team,total_goals=row[3], total_assists=row[4],market_value=row[5])
+
+
 
 
 # for player_data in players:
