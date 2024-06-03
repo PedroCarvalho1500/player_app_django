@@ -14,8 +14,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 import csv
-from parameterized import parameterized
-from ddt import ddt, data, unpack
 from selenium.webdriver.support.ui import Select
 
 soccer_players = [
